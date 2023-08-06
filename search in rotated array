@@ -1,0 +1,39 @@
+class Solution {
+    public int search(int[] nums, int target) {
+       return searchin(nums,target,0,nums.length-1);
+        
+    }
+    public static int searchin(int nums[],int target,int si,int ei)
+    {
+        if(si>ei)
+        {
+            return -1;
+        }
+        int mid=(si+ei)/2;
+        if(nums[mid]==target)
+        {
+            return mid;
+        }
+
+        if(nums[si]<=nums[mid])
+        {
+            if(nums[si]<=target&&nums[mid]>=target)
+            {
+                return searchin(nums,target,si,mid-1);
+            }
+            else{
+                return searchin(nums,target,mid+1,ei);
+            }
+        }
+        else{
+            if(nums[mid]<=target&&nums[ei]>=target)
+            {
+                return searchin(nums,target,mid+1,ei);
+            }
+            else{
+                return searchin(nums,target,si,mid-1);
+            }
+        }
+     
+    }
+}
